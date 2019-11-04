@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Hassan Voyeau | Web Developer | Projects</title>
+    <meta name="author" content="Hassan Voyeau">
+    <meta name="description" content="Projects">
+    <meta name="keywords" content="">
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="css/siimple.min.css" />
+</head>
+
+<style>
+    body {
+        background: #58D68D;
+        overflow-wrap: break-word;
+        overflow-x: hidden;
+    }
+
+    p {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .title {
+        margin-top:160px;
+    }
+
+    .text {
+        color: #FFFFFF;
+    }
+
+    .slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    #slide1 {
+        background: #58D68D;
+        z-index: 2;
+    }
+
+    #slide2 {
+        background: #5DADE2;
+        z-index: 1;
+        display: none;
+    }
+
+    #slide3 {
+        background: #EC7063;
+        z-index: 1;
+        display: none;
+    }
+
+    #slide4 {
+        background: #F5B041;
+        z-index: 1;
+        display: none;
+    }
+
+    #slide5 {
+        background: #AF7AC5;
+        z-index: 1;
+        display: none;
+    }
+
+    #menu {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 99;
+        padding: 20px;
+        
+    }
+
+    .menu-item {
+        color: #FFFFFF;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <div id="slide1" class="slide">
+        <p class="siimple-h1 title">About</p>
+        <p class="siimple-h2 text">I am a web developer and coder from Trinidad and Tobago and I like to build stuff.
+            This is my projects website where I highlight what I am doing. My resume is <a href="https://hassantt.com/resume.pdf">here</a>.</p>
+    </div>
+    <div id="slide2" class="slide">
+        <p class="siimple-h1 title">Recent technologies that I worked with</p>
+        <p class="siimple-h2 text">HTML, CSS, Javascript, jQuery, UIKit, Siimple, Apify, Heroku, Firebase, NodeJS, SQL,
+            Middleman, C#, Git, Github, PHP, Wordpress, ASP.Net, SendGrid</p>
+    </div>
+    <div id="slide3" class="slide">
+        <p class="siimple-h1 title">The plan</p>
+        <p class="siimple-h2 text">
+            <ul class="text">
+                <li>Write more coding related blog posts</li>
+                <li>Share my code on Github</li>
+                <li>Get suggestions from you on what you want to see coded</li>
+                <li>Try different and new technologies</li>
+                <li>Be more active on StackOverflow</li>
+                <li>Contribute to a small open source project</li>
+                <li>Work on a volunteer project</li>
+                <li>Make youtube coding related tutorials</li>
+                <li>Eat pizza and drink drinks and also booza ice cream</li>
+                <li>Add more things to this list</li>
+            </ul>
+        </p>
+    </div>
+    <div id="slide4" class="slide">
+        <p class="siimple-h1 title">Some pet projects I worked on</p>
+        <p class="siimple-h2 text">
+            <ul class="text">
+                <li>Select a country from a map and see what the entry and visa requirements are for Trinidadians</li>
+                <li>Display map of Trinidad with temp readings from MET Office website</li>
+                <li>Develop queries based on results data from lotto website</li>
+                <li>Tweet reminder for 5 times daily prayers, data scraped from website</li>
+                <li>Show real-time subscriber count for selected channel</li>
+                <li>Form to email demo using SendGrid</li>
+                <li>Full screen content slider for this website</li>
+            </ul>
+        </p>
+        <p class="siimple-h1">Upcoming projects</p>
+        <p class="siimple-h2 text">
+            <ul class="text">
+                <li>Script to mass delete all tweets</li>
+            </ul>
+        </p>
+    </div>
+    <div id="slide5" class="slide">
+        <p class="siimple-h1 title">CONTACT</p>
+        <p class="siimple-h2 text">coder@hassantt.com</p>
+    </div>
+
+    <input type="hidden" id="current" name="cindex" value="1" />
+
+    <div id="menu">
+        <span id="m1" class="menu-item">ABOUT</span>
+        <span> / </span>
+        <span id="m2" class="menu-item">TECH</span>
+        <span> / </span>
+        <span id="m3" class="menu-item">PLAN</span>
+        <span> / </span>
+        <span id="m4" class="menu-item">PROJECTS</span>
+        <span> / </span>
+        <span id="m5" class="menu-item">CONTACT</span>
+    </div>
+</body>
+
+<script>
+    $(document).ready(function () {
+        $('.menu-item').click(function () {
+            var index = $(this).attr("id").substr(-1);
+            var width = $(window).width();
+            var current = $('#current').val();
+
+            if (current === index) {
+            }
+            else {
+                $('body').css("background", $('#slide' + current).css("background"));
+                $('.slide').hide();
+                $('#slide' + current).css("left", "0px");
+                $('#slide' + current).css("z-index", "1");
+                $('#slide' + current).show();
+
+                $('#slide' + index).css("left", "" + width + "px");
+                $('#slide' + index).css("z-index", "2");
+                $('#slide' + index).show();
+
+                $('#slide' + index).animate({
+                    'left': 0
+                }, { duration: 1000, queue: false });
+
+                $('#slide' + current).animate({
+                    'left': "-=" + width
+                }, { duration: 1000, queue: false });
+
+                $('#current').val(index);
+                $('body').css("background", $('#slide' + index).css("background"));
+            }
+        });
+    });
+</script>
+
+</html>
